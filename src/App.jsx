@@ -1,4 +1,4 @@
-import { HashRouter, useRoutes } from 'react-router-dom'
+import { BrowserRouter, HashRouter, useRoutes } from 'react-router-dom'
 import routes from '@/router'
 import './global.less'
 
@@ -9,9 +9,9 @@ function RouteElement() {
 }
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <RouteElement />
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 export default App

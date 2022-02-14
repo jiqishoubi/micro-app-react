@@ -52,6 +52,11 @@ let routes = [
             path: 'index2',
             element: () => import('@/pages/index2'),
           },
+          // 子应用1
+          {
+            path: 'childApp',
+            element: () => import('@/pages/childApp/page1'),
+          },
           route404,
         ],
       },

@@ -1,7 +1,8 @@
-import { makeAutoObservable, runInAction } from 'mobx'
+import { autorun, makeAutoObservable, runInAction } from 'mobx'
 import request from '@/utils/request'
 import dealMenu from '@/utils/dealMenu'
 import { LOGIN_TOKEN_KEY } from '@/utils/consts'
+import microApp from '@micro-zoe/micro-app'
 
 class Login {
   constructor() {
@@ -54,4 +55,8 @@ class Login {
   }
 }
 const login = new Login()
+autorun(() => {
+  console.log('基座 setGlobalData', { userInfo: login.userInfo })
+  microApp.setGlobalData({ userInfo: login.userInfo })
+})
 export default login
