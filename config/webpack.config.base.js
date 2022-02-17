@@ -25,6 +25,7 @@ const lessLoader = {
 }
 
 /**
+ *
  * config
  */
 module.exports = {
@@ -32,6 +33,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, '../dist'),
+    publicPath: '/', // history路由
     filename: '[name].[contenthash].js',
     clean: true, // 每次构建清理dist
   },
@@ -76,14 +78,11 @@ module.exports = {
     compress: true,
     hot: true,
     port: 9103,
-
-    static: {
-      publicPath: '/',
-    },
-    historyApiFallback: true,
+    historyApiFallback: true, // history路由
   },
   devtool: 'eval-source-map',
   plugins: [
+    // index.html 模板
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
