@@ -15,9 +15,9 @@ function Index() {
   /**
    * 渲染
    */
-  if (!token && location.pathname !== LOGIN_PATH) {
-    return <Navigate to={LOGIN_PATH} />
-  }
+  // if (!token && location.pathname !== LOGIN_PATH) {
+  //   return <Navigate to={LOGIN_PATH} />
+  // }
   return <Outlet />
 }
 
