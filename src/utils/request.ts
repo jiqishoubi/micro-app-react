@@ -23,33 +23,36 @@ interface RequestOptionsType {
 function request<T>(options: RequestOptionsType): Promise<T> {
   const { url, data = {}, method = 'post', headers = {}, errMsg = true, ...restOptions } = options
   const token = localStorage.getItem(LOGIN_TOKEN_KEY) || null
+
   // postData
-  let postData = {}
+  const formData = new FormData()
   for (let key in data) {
     if (Object.prototype.hasOwnProperty.call(data, key)) {
       const v = data[key]
       if (haveValue(v)) {
-        postData[key] = v
+        formData.append(key, v)
       }
     }
   }
+
   // postUrl
   let postUrl = url.indexOf('http:') > -1 || url.indexOf('https:') > -1 ? url : ENV_CONFIG.apiPath + url
   if (token) {
     postUrl = `${postUrl}?sessionId=${token}`
   }
+
   return new Promise<T>((resolve, reject) => {
     return axios
       .request({
         url: postUrl,
         method,
         headers: {
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
           // "Content-Type": "application/x-www-form-urlencoded",
-          // "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
           ...headers,
         },
-        data: postData,
+        data: formData,
         timeout: 60 * 1000,
         ...restOptions,
       })

@@ -15,7 +15,7 @@ export default function dealMenu(arr: MenuType[]): {
   allMenu.forEach((item: MenuItemType) => {
     // 修改item
     item.name = item.menuTitle || ''
-    item.path = item.menuUrl || ''
+    item.path = '/app-vue3' + (item.menuUrl || '') // todo
 
     if (item.path?.indexOf('-') > -1 && item.path?.indexOf('/') == -1) {
       // 权限

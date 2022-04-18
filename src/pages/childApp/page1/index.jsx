@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react'
+import { ENV_CONFIG } from '@/utils/consts'
 /** @jsxRuntime classic */
 /** @jsx jsxCustomEvent */
 import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
@@ -9,8 +10,7 @@ function Index() {
   // baseroute(可选)：基座应用分配给子应用的基础路由，就是上面的 `/my-page`
   return (
     <div>
-      <h1>子应用</h1>
-      <micro-app name="app1" url="http://localhost:8052/" baseroute="/childApp"></micro-app>
+      <micro-app name="app1" url={`${ENV_CONFIG.doctor.origin}/childApp/`} baseroute="/app-vue3"></micro-app>
     </div>
   )
 }

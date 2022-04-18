@@ -3,13 +3,13 @@ import { observer } from 'mobx-react'
 import login from '@/store/login'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, UnlockOutlined } from '@ant-design/icons'
-import { useNavigate } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import InputSMS from '../InputSMS'
 import { ENV_CONFIG, LOGIN_TOKEN_KEY } from '@/utils/consts'
 import request from '@/utils/request'
 
 const Index = () => {
-  const navigate = useNavigate()
+  const history = useHistory()
   const [formRef] = Form.useForm()
   const [submitting, setSubmitting] = useState(false)
 
@@ -30,6 +30,7 @@ const Index = () => {
         setSubmitting(false)
       })
       .then((data) => {
+        console.log('登录成功结果', data)
         //二、初始化信息
         localStorage.setItem(LOGIN_TOKEN_KEY, data.loginSessionId) //保存token
         login.initInfo()
@@ -40,8 +41,8 @@ const Index = () => {
 
   /** 此方法会跳转到 redirect 参数所在的位置 */
   function goto(url) {
-    if (!navigate) return
-    navigate(url || '/')
+    if (!history) return
+    history.push(url || '/')
   }
 
   return (

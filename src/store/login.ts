@@ -56,7 +56,12 @@ class Login {
 }
 const login = new Login()
 autorun(() => {
-  console.log('基座 setGlobalData', { userInfo: login.userInfo })
-  microApp.setGlobalData({ userInfo: login.userInfo })
+  const token = localStorage.getItem(LOGIN_TOKEN_KEY) || ''
+  const globalData = {
+    userInfo: login.userInfo,
+    token,
+  }
+  console.log('基座 setGlobalData', globalData)
+  microApp.setGlobalData(globalData)
 })
 export default login

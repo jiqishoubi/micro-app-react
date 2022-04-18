@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom'
 import App from './App'
 import microApp from '@micro-zoe/micro-app'
+import { ENV_CONFIG } from './utils/consts'
 
 microApp.start({
   // sockjs-node报错 要不然会一直刷新
@@ -10,7 +11,7 @@ microApp.start({
         {
           loader(code) {
             if (process.env.NODE_ENV === 'development' && code.indexOf('sockjs-node') > -1) {
-              code = code.replace('window.location.port', 8052)
+              code = code.replace('window.location.port', ENV_CONFIG.doctor.devPort)
             }
             return code
           },

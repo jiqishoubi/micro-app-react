@@ -5,11 +5,19 @@ const ENV: string = process.env.ENV as string // 'development'
 const envConfig = {
   // 测试环境
   development: {
-    apiPath: 'https://cdcwebt.bld365.com',
+    apiPath: 'https://lyapit.bld365.com',
+    doctor: {
+      devPort: '9032',
+      origin: 'http://localhost:9032',
+    },
   },
   // 生产环境
   production: {
-    apiPath: 'https://cdcweb.bld365.com',
+    apiPath: 'https://lyapi.bld365.com',
+    doctor: {
+      devPort: '9032',
+      origin: 'http://localhost:9032',
+    },
   },
 }
 export const ENV_CONFIG = envConfig[ENV]
